@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
+
+:root {
+  --piano-height: 400px;
+  --piano-width: 200px;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+}
+
+#second {
+  position: absolute;
+  z-index: 2;
+  top: 100;
+}
+
+#piano {
+  position: relative;
+  height: var(--piano-height);
+  width: var(--piano-width);
+  background-color: #ddd;
+}
+
+#white-keys,
+#black-keys {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-rows: repeat(7, 1fr);
+  grid-template-columns: 4fr;
+}
+
+#black-keys {
+  position: absolute;
+  top: 40px;
+}
+
+.white-key,
+.black-key {
+  display: flex;
+  align-items: center;
+}
+
+.white-key {
+  justify-content: right;
+  padding-right: 10px;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-radius: 5px;
+  text-align: right;
+  color: #222;
+  font-size: 1.3rem;
+}
+
+.black-key {
+  justify-content: center;
+  background-color: #000;
+  border: 1px solid #333;
+  border-radius: 5px;
+  height: 60%;
+  width: 60%;
+  color: #f9f9f9;
+  font-size: 1.1rem;
+}
+
+.white-key.clicked,
+.black-key.clicked {
+  background-color: blue;
+}
+
+.empty {
+  visibility: hidden;
+}
