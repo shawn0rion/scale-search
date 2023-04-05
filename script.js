@@ -4,15 +4,14 @@ let userScale = [];
 let possibleScales = [];
 
 const whiteKeys = document.querySelectorAll(".white-key");
-console.log(whiteKeys);
 const blackKeys = document.querySelectorAll(".black-key");
 const keys = [...whiteKeys].concat([...blackKeys]);
-console.log(keys);
+
 keys.forEach((key) => {
-  console.log(key);
   key.addEventListener("click", (e) => {
-    console.log(key);
     toggleActive(e);
+    findPossibleScales();
+    displayPossibleScales();
   });
 });
 
@@ -69,10 +68,7 @@ function generateScales() {
     const minScale = createScale(note, false);
     allScales.push(createObject(minTitle, minScale));
   });
-  return allScales;
 }
-
-console.log(generateScales());
 
 function toggleActive(event) {
   const { target } = event;
@@ -94,3 +90,34 @@ function toggleActive(event) {
   console.log(target);
   console.log(userScale);
 }
+
+function findPossibleScales() {
+  possibleScales = allScales.filter((scale) => hasSubset(scale));
+}
+
+function hasSubset(thisScale) {
+  console.log(thisScale);
+  return userScale.every((note) => thisScale["scale"].includes(note));
+}
+
+function displayPossibleScales() {
+  const list = document.getElementById("list");
+
+  // clear
+  while (list.firstChild) {
+    list.removeChild(list.lastChild);
+  }
+  // when there are no highlighted buttons
+  if (userScale.length < 1) {
+    return;
+  }
+  // append
+  possibleScales.forEach((scale) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = scale.name;
+    listItem.classList.add("scale");
+    list.appendChild(listItem);
+  });
+}
+
+generateScales();
