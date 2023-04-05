@@ -1,13 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
 
 :root {
-  --piano-height: 400px;
-  --piano-width: 200px;
+  --piano-height: 500px;
+  --piano-width: 250px;
 }
 
 body {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
   height: 100vh;
   position: relative;
   font-family: "Open Sans", sans-serif;
@@ -17,6 +19,10 @@ body {
   position: absolute;
   z-index: 2;
   top: 100;
+}
+
+#list {
+  height: calc(var(--piano-height) - 50px);
 }
 
 #piano {
@@ -29,15 +35,20 @@ body {
 #white-keys,
 #black-keys {
   display: grid;
-  height: 100%;
-  width: 100%;
   grid-template-rows: repeat(7, 1fr);
   grid-template-columns: 4fr;
 }
 
+#white-keys {
+  height: 100%;
+  width: 100%;
+}
+
 #black-keys {
   position: absolute;
-  top: 40px;
+  height: 100%;
+  width: 60%;
+  top: 50px;
 }
 
 .white-key,
@@ -48,13 +59,13 @@ body {
 
 .white-key {
   justify-content: right;
-  padding-right: 10px;
+  padding-right: 15px;
   background-color: #fff;
   border: 1px solid #999;
   border-radius: 5px;
   text-align: right;
   color: #222;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 .black-key {
@@ -63,14 +74,14 @@ body {
   border: 1px solid #333;
   border-radius: 5px;
   height: 60%;
-  width: 60%;
+  width: 100%;
   color: #f9f9f9;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
-.white-key.clicked,
-.black-key.clicked {
-  background-color: blue;
+.white-key.active,
+.black-key.active {
+  background-color: #3c63f3;
 }
 
 .empty {
